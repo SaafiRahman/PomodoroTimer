@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 function Timer({isrunning, reset}) {
     const [minutes, setMinutes] = useState(1);
@@ -31,10 +33,9 @@ function Timer({isrunning, reset}) {
         return () => clearInterval(interval);
 
     }, [seconds, minutes, start])
-    
     return (
         <div>
-            <h1>{minutes} : {seconds}</h1>
+            <h1><CircularProgressbar value={seconds} text={`{seconds}`} /></h1>
         </div>
     );
 }
