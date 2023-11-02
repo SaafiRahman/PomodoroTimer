@@ -11,3 +11,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  text-align: center;
+  background-color: #e42525;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  min-height: 100vh;
+  display: flex;
+}
+
+.App-header {
+
+  font-size: 72px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(28, 25, 182);
+  font-weight: 600;
+}
+
+.button {
+  background-color: #01b5e2ea;
+  color: #072a33ea;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 25px;
+}
+
+.button:active {
+  background-color: #054c58;
+}
+
+.buttons .button{
+  display: inline-block;
+  margin: 5px;
+}
