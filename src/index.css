@@ -14,7 +14,7 @@ code {
 
 .App {
   text-align: center;
-  background-color: #e42525;
+  background-color: #da3333;
   flex-direction: column;
   align-items: center;
   justify-content: top;
@@ -30,21 +30,25 @@ code {
   font-weight: 600;
 }
 
-.button {
-  background-color: #01b5e2ea;
+button {
+  background-color: #da3333;
   color: #072a33ea;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 25px;
+  border: 0;
+  display: inline-block;
+  width: 100px;
+  cursor: pointer;
 }
 
-.button:active {
-  background-color: #054c58;
+button:active {
+  color: #0d7486;
 }
 
 .buttons .button{
   display: inline-block;
   margin: 5px;
+}
+
+.settings {
+  flex-direction: row;
+  display: flex;
 }

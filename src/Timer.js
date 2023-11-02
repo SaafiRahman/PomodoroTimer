@@ -1,42 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import React, { useState, useEffect, useContext } from 'react';
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import TimerContext from './TimerContext';
 
-function Timer({isrunning, reset}) {
-    const [minutes, setMinutes] = useState(1);
-    const [seconds, setSeconds] = useState(0);
+
+function Timer() {
+    const timerinfo = useContext(TimerContext);
     const [start, setStart] = useState(false);
 
-    useEffect(() => { 
-            setStart(isrunning);
-    }, [isrunning])
+    const children = ({ remainingTime }) => {
+        const minutes = Math.floor(remainingTime / 60)
+        const seconds = remainingTime % 60
+      
+        return `${minutes}:${seconds}`
+      }
 
-    useEffect(() => {
-            console.log("also resetted");
-            setStart(false);
-            setMinutes(1);
-            setSeconds(0);
-    }, [reset])
-
-    useEffect(() => {   
-        let interval;
-        if  (start && (minutes > 0 || seconds > 0)) {
-            interval = setInterval(() => {
-                if (seconds > 0) {
-                    setSeconds((seconds) => seconds - 1);
-                } else if (minutes > 0) {
-                    setMinutes((minutes) =>  minutes - 1);
-                    setSeconds(59);
-                }
-            }, 1000)
-        } 
-        return () => clearInterval(interval);
-
-    }, [seconds, minutes, start])
     return (
         <div>
-            <h1><CircularProgressbar value={seconds} text={`{seconds}`} /></h1>
+            <h1>
+                <CountdownCircleTimer
+                    isPlaying={true}
+                    duration={timerinfo.studyMinutes * 60}
+                    colors={['#1A9AFF', '#1C19B6']}
+                    colorsTime={[7, 0]}
+                    size={280}
+                >
+                    {children}
+                </CountdownCircleTimer>  
+            </h1>
         </div>
     );
 }
 export default Timer;
+
