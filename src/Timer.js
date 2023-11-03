@@ -7,7 +7,7 @@ function Timer() {
     const timerinfo = useContext(TimerContext);
 
     const handleTime = () => {
-        
+
     }
 
     const children = ({ remainingTime }) => {
@@ -22,7 +22,7 @@ function Timer() {
             <h1>
                 <CountdownCircleTimer
                     isPlaying={timerinfo.start}
-                    duration={handleTime}
+                    duration={timerinfo.studyMinutes * 60}
                     colors={['#1A9AFF', '#1C19B6']}
                     colorsTime={[7, 0]}
                     size={280}
