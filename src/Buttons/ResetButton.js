@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
-import TimerContext from './TimerContext';
+import TimerContext from '../TimerContext';
 
 function ResetButton(props) {
     const timerinfo = useContext(TimerContext);
 
     const handleToggle = () => {
+        timerinfo.setKey(prevKey => prevKey + 1);
         timerinfo.setStart(false);
-        timerinfo.setStudyMinutes(timerinfo.initialStudy);
-        timerinfo.setBreakMinutes(timerinfo.initialBreak);
       };
 
     return (

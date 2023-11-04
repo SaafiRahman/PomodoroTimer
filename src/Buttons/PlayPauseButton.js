@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import TimerContext from './TimerContext';
+import TimerContext from '../TimerContext';
 
 function PlayPauseButton(props) {
     const timerinfo = useContext(TimerContext);
 
     const handleToggle = () => {
-        timerinfo.setStart(!timerinfo.start); 
+        timerinfo.setStart(!timerinfo.start);
+        console.log(timerinfo.start);
       };
       
     return (

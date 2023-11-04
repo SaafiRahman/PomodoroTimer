@@ -4,16 +4,16 @@ import TimerContext from './TimerContext';
 
 
 function Timer() {
-    const timerinfo = useContext(TimerContext);
-
-    const handleTime = () => {
-
-    }
-
+    const timerinfo = useContext(TimerContext); 
+    const handleComplete = () => {
+        setTimeout(() => {
+            alert("Its time for a break!");
+        }, 100);
+    }    
+    
     const children = ({ remainingTime }) => {
         const minutes = Math.floor(remainingTime / 60)
         const seconds = remainingTime % 60
-      
         return `${minutes}:${seconds}`
       }
 
@@ -21,11 +21,13 @@ function Timer() {
         <div>
             <h1>
                 <CountdownCircleTimer
+                    key={timerinfo.key}
                     isPlaying={timerinfo.start}
                     duration={timerinfo.studyMinutes * 60}
                     colors={['#1A9AFF', '#1C19B6']}
                     colorsTime={[7, 0]}
                     size={280}
+                    onComplete={handleComplete}
                 >
                     {children}
                 </CountdownCircleTimer>  
