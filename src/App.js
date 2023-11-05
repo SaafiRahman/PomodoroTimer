@@ -21,7 +21,7 @@ function App() {
       </header>
 
       <div>
-        <TimerContext.Provider
+    <TimerContext.Provider
           value={{
             studyMinutes,
             breakMinutes,
@@ -41,29 +41,29 @@ function App() {
 
       <div className='settings'>
         <div style={{ marginRight: '500px' }}>
-          <h2>Study Time</h2>
+        {!start && <h2>Study Time</h2>}
           <div className='button-spacing'>
-            <TimerContext.Provider
-              value={{
-                studyMinutes,
-                breakMinutes,
-                start,
-                setStudyMinutes,
-                setBreakMinutes,
-                setStart
-              }}
-            >
-              <MinusButton style={{ width: '55px', paddingTop: '8px' }} type={"study"} />
-              <h1>{studyMinutes}:00</h1>
-              <PlusButton style={{ width: '55px', paddingTop: '8px' }} type={"study"} />
-            </TimerContext.Provider>
+          {!start && (<TimerContext.Provider
+          value={{
+            studyMinutes,
+            breakMinutes,
+            start,
+            setStudyMinutes,
+            setBreakMinutes,
+            setStart
+          }}
+        >
+          <MinusButton style={{ width: '55px', paddingTop: '8px' }} type={"study"} />
+          <h1>{studyMinutes}:00</h1>
+          <PlusButton style={{ width: '55px', paddingTop: '8px' }} type={"study"} />
+        </TimerContext.Provider>)}
           </div>
         </div>
 
         <div>
-          <h2>Break Time</h2>
+        {!start && <h2>Break Time</h2>}
           <div className='button-spacing'>
-            <TimerContext.Provider
+          {!start && (<TimerContext.Provider
               value={{
                 studyMinutes,
                 breakMinutes,
@@ -76,7 +76,7 @@ function App() {
               <MinusButton style={{ width: '55px', paddingTop: '8px' }} type={"break"} />
               <h1>{breakMinutes}:00</h1>
               <PlusButton style={{ width: '55px', paddingTop: '8px' }} type={"break"} />
-            </TimerContext.Provider>
+            </TimerContext.Provider>)}
           </div>
         </div>
       </div>

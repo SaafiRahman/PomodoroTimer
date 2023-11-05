@@ -2,25 +2,20 @@ import React, { useState, useEffect, useContext } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import TimerContext from './TimerContext';
 
-
-function Timer() {
+function StudyTimer() {
     const timerinfo = useContext(TimerContext); 
+
     const handleComplete = () => {
-        setTimeout(() => {
-            alert("Its time for a break!");
-        }, 100);
-    }    
-    
+        timerinfo.setIsStudying(false);
+    } 
+
     const children = ({ remainingTime }) => {
         const minutes = Math.floor(remainingTime / 60)
         const seconds = remainingTime % 60
         return `${minutes}:${seconds}`
-      }
-
-    return (
-        <div>
-            <h1>
-                <CountdownCircleTimer
+    }
+return (
+    <CountdownCircleTimer
                     key={timerinfo.key}
                     isPlaying={timerinfo.start}
                     duration={timerinfo.studyMinutes * 60}
@@ -30,7 +25,41 @@ function Timer() {
                     onComplete={handleComplete}
                 >
                     {children}
-                </CountdownCircleTimer>  
+                </CountdownCircleTimer>
+)}
+
+function BreakTimer() {
+    const timerinfo = useContext(TimerContext); 
+
+    const handleComplete = () => {
+        timerinfo.setIsStudying(false);
+    } 
+
+    const children = ({ remainingTime }) => {
+        const minutes = Math.floor(remainingTime / 60)
+        const seconds = remainingTime % 60
+        return `${minutes}:${seconds}`
+    }
+return (
+    <CountdownCircleTimer
+                    key={timerinfo.key}
+                    isPlaying={timerinfo.start}
+                    duration={timerinfo.breakMinutes * 60}
+                    colors={['#1DE613', '#097504']}
+                    colorsTime={[7, 0]}
+                    size={280}
+                    onComplete={handleComplete}
+                >
+                    {children}
+                </CountdownCircleTimer>
+)}
+
+function Timer() {
+    const timerinfo = useContext(TimerContext);
+    return (
+        <div>
+            <h1>
+                {timerinfo.isStudying ? <StudyTimer /> : <BreakTimer />}
             </h1>
         </div>
     );
