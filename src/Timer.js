@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import TimerContext from './TimerContext';
+import addNotification from 'react-push-notification';
 
 function StudyTimer() {
     const timerinfo = useContext(TimerContext); 
 
     const handleComplete = () => {
+        addNotification({
+            title: 'Time for a break',
+            message: 'I think you deserve a well earned break',
+            duration: 5000,
+            native: true
+        });
         timerinfo.setIsStudying(false);
     } 
 
@@ -18,7 +25,7 @@ return (
     <CountdownCircleTimer
                     key={timerinfo.key}
                     isPlaying={timerinfo.start}
-                    duration={timerinfo.studyMinutes * 60}
+                    duration={timerinfo.studyMinutes}
                     colors={['#1A9AFF', '#1C19B6']}
                     colorsTime={[7, 0]}
                     size={280}
